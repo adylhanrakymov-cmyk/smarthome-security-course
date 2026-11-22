@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Security</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">⌂</div>
+            <div>
+                <h2>SMART HOME</h2>
+                <span>SECURITY SYSTEM</span>
+            </div>
+        </div>
+
+        <div class="menu-label">МЕНЮ</div>
+
+        <nav>
+            <a href="#dashboard" class="nav-link active">▦ <span>Главная панель</span></a>
+            <a href="#devices" class="nav-link">◈ <span>Устройства</span></a>
+            <a href="#simulation" class="nav-link">⚡ <span>Тестирование датчиков</span></a>
+            <a href="#events" class="nav-link">◷ <span>Журнал событий</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="connection-dot"></div>
+            <span>Система подключена</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <div class="small-label">СИСТЕМА ДОМАШНЕЙ БЕЗОПАСНОСТИ</div>
+                <h1>Панель управления</h1>
+            </div>
+            <div class="online-status">
+                <span class="green-dot"></span>
+                ONLINE
+            </div>
+        </header>
+
+        <!-- ГЛАВНАЯ ПАНЕЛЬ -->
+
+        <section id="dashboard">
+
+            <div class="welcome">
+                <div>
+                    <div class="small-label">SMART SECURITY CONTROL CENTER</div>
+                    <h2>Ваш дом под защитой.</h2>
+                    <p>Контролируйте безопасность в режиме реального времени.</p>
+                </div>
+                <div class="shield-illustration">⬡</div>
+            </div>
+
+            <div class="section-heading">
+                <h2>Обзор системы</h2>
+                <span>Текущие показатели</span>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">⬡</div>
+                    <div class="stat-label">РЕЖИМ ОХРАНЫ</div>
+                    <div class="stat-value" id="security-status">Загрузка...</div>
+                    <div class="stat-description">Состояние защиты</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">◈</div>
+                    <div class="stat-label">УСТРОЙСТВА</div>
+                    <div class="stat-value" id="device-count">0</div>
+                    <div class="stat-description">Подключённых устройств</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon red">⚠</div>
+                    <div class="stat-label">ТРЕВОГА</div>
+                    <div class="stat-value" id="alarm-status">Нет</div>
+                    <div class="stat-description">Состояние тревоги</div>
+                </div>
+
+            </div>
+
+            <div class="section-heading">
+                <h2>Управление безопасностью</h2>
+                <span>Центральное управление</span>
+            </div>
+
+            <div class="control-card">
+                <div>
+                    <h3>Система охраны</h3>
+                    <p>Управляйте режимом безопасности вашего дома.</p>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="btn btn-primary" onclick="armSecurity()">
+                        Включить охрану
+                    </button>
+
+                    <button class="btn btn-secondary" onclick="disarmSecurity()">
+                        Отключить охрану
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- УСТРОЙСТВА -->
+
+        <section id="devices">
+
+            <div class="section-heading">
+                <h2>Подключённые устройства</h2>
+                <span>Мониторинг датчиков</span>
+            </div>
+
+            <div class="devices-grid" id="devices-list">
+                <div class="device-card">Загрузка устройств...</div>
+            </div>
+
+        </section>
+
+        <!-- ТЕСТИРОВАНИЕ ДАТЧИКОВ -->
+
+        <section id="simulation">
+
+            <div class="section-heading">
+                <h2>Тестирование датчиков</h2>
+                <span>Имитация событий</span>
+            </div>
+
+            <div class="control-card sensor-panel">
+
+                <div>
+                    <h3>Симулятор устройств</h3>
+                    <p>
+                        Выберите событие, чтобы проверить реакцию
+                        системы домашней безопасности.
+                    </p>
+                </div>
+
+                <div class="sensor-controls">
+
+                    <button class="btn btn-primary"
+                        onclick="simulateSensor('motion')">
+                        Обнаружить движение
+                    </button>
+
+                    <button class="btn btn-secondary"
+                        onclick="simulateSensor('door_open')">
+                        Открыть входную дверь
+                    </button>
+
+                    <button class="btn btn-secondary"
+                        onclick="simulateSensor('window_open')">
+                        Открыть окно
+                    </button>
+
+                </div>
+
+                <div id="simulation-message" class="simulation-message">
+                    Ожидание события от датчиков...
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ЖУРНАЛ СОБЫТИЙ -->
+
+        <section id="events">
+
+            <div class="section-heading">
+                <h2>Журнал событий</h2>
+                <span>Последние действия системы</span>
+            </div>
+
+            <div class="events-card">
+                <div id="events-list">Загрузка журнала...</div>
+            </div>
+
+        </section>
+
+        <footer>
+            SMART HOME SECURITY · PROJECT 2026
+        </footer>
+
+    </main>
+</div>
+
+</body>
+</html>
